@@ -2,10 +2,12 @@
 
 
 
-class company : 
+class Company : 
     """
-    class data company and finance indicators
+    class data Company and finance indicators
     """
+
+    
     name: str
     marketCap: float
     earnings: float
@@ -31,28 +33,28 @@ class company :
         self.bookValueOfNetAssets = bookValueOfNetAssets
         self.earningsGrowRate = earningsGrowRate
     
-    def getPriceToEarnings(self) -> float:
+    def get_price_to_earnings(self) -> float:
         return self.marketCap / self.earnings
 
-    def getPriceEarningsGrowthRatio(self) -> float:
+    def get_price_earnings_growth_ratio(self) -> float:
         return self.marketCap / self.earnings / self.earningsGrowRate
 
-    def getPriceToSalesRatio(self) -> float:
+    def get_price_to_sales_ratio(self) -> float:
         return self.marketCap / self.revenue
 
-    def getPriceToCashFlow(self) -> float:
+    def get_price_to_cash_flow(self) -> float:
         return self.marketCap / self.cashFlow
     
-    def getPriceToBookValue(self) -> float:
+    def get_price_to_book_value(self) -> float:
         return self.marketCap / self.bookValueOfNetAssets
     
-    def getDebtToEquityRatio(self) -> float:
+    def get_debt_to_equity_ratio(self) -> float:
         return self.liabilities / self.equity
 
-    def getReturnOnShareholdersEquity(self) -> float:
+    def get_return_on_shareholders_equity(self) -> float:
         return self.earnings / self.equity
 
-    def getReturnOnAssets(self) -> float:
+    def get_return_on_assets(self) -> float:
         return self.earnings / self.assets * 100
     
 
