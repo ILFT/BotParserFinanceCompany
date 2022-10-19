@@ -1,28 +1,60 @@
 
 
 
+
 class company : 
     """
     class data company and finance indicators
     """
     name: str
-    priceToEarnings: float
-    priceEarningsGrowthRatio: float
-    priceToSalesRatio: float
-    priceToCashFlow: float
-    priceToBookValue: float
-    debtToEquityRatio: float
-    returnOnShareholdersEquity: float
-    returnOnAssets: float
+    marketCap: float
+    earnings: float
+    revenue: float
+    cashFlow: float
+    equity: float
+    liabilities: float
+    assets: float
+    bookValueOfNetAssets: float
+    earningsGrowRate: float
 
-    def __init__(self, name: str, priceToEarnings: float, priceEarningsGrowthRatio: float, priceToSalesRatio: float, priceToCashFlow: float, priceToBookValue: float, debtToEquityRatio: float, returnOnShareholdersEquity: float, returnOnAssets: float) -> None:
+
+
+    def __init__(self, name: str, marketCap: float, earnings: float, revenue: float, cashFlow: float, equity: float, liabilities: float, assets: float, bookValueOfNetAssets: float, earningsGrowRate: float):
         self.name = name
-        self.priceToEarnings = priceToEarnings
-        self.priceEarningsGrowthRatio = priceEarningsGrowthRatio
-        self.priceToSalesRatio = priceToSalesRatio
-        self.priceToCashFlow = priceToCashFlow
-        self.priceToBookValue = priceToBookValue
-        self.debtToEquityRatio = debtToEquityRatio
-        self.returnOnShareholdersEquity = returnOnShareholdersEquity
-        self.returnOnAssets = returnOnAssets
+        self.marketCap =  marketCap
+        self.earnings = earnings
+        self.revenue = revenue
+        self.cashFlow = cashFlow
+        self.equity = equity
+        self.liabilities = liabilities
+        self.assets = assets
+        self.bookValueOfNetAssets = bookValueOfNetAssets
+        self.earningsGrowRate = earningsGrowRate
+    
+    def getPriceToEarnings(self) -> float:
+        return self.marketCap / self.earnings
+
+    def getPriceEarningsGrowthRatio(self) -> float:
+        return self.marketCap / self.earnings / self.earningsGrowRate
+
+    def getPriceToSalesRatio(self) -> float:
+        return self.marketCap / self.revenue
+
+    def getPriceToCashFlow(self) -> float:
+        return self.marketCap / self.cashFlow
+    
+    def getPriceToBookValue(self) -> float:
+        return self.marketCap / self.bookValueOfNetAssets
+    
+    def getDebtToEquityRatio(self) -> float:
+        return self.liabilities / self.equity
+
+    def getReturnOnShareholdersEquity(self) -> float:
+        return self.earnings / self.equity
+
+    def getReturnOnAssets(self) -> float:
+        return self.earnings / self.assets * 100
+    
+
+    
 
