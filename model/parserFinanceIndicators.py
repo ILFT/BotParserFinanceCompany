@@ -1,9 +1,13 @@
+import requests
+from bs4 import BeautifulSoup 
 
 from model.company import Company
 
 
 FIRST_STOCK_MARKET = "https://www.moex.com"
 SECOND_STOCK_MARKET = "https://tradingview.com"
+THRID_STOCK_MARKET = "https://smart-lab.ru"
+#/q/GAZP/f/y
 
 class ParserFinanceIndicators :
     """
@@ -29,8 +33,14 @@ class ParserFinanceIndicators :
         """
         pass
 
+    def __parsing_with_smart_lab(cls, nameCompany: str) -> Company:
+
+        pass
+
     def __create_company(cls, textIndicator: str) -> Company:
         """
         the function of create new object class company
         """
         pass
+
+

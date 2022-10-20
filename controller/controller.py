@@ -10,5 +10,5 @@ class Controller :
     """
 
     
-    def execute_command(command: ICommand):
+    def execute_command(self, command: ICommand):
         command.execute()

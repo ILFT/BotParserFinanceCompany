@@ -10,5 +10,5 @@ class Model :
 
     nowCompany: Company
 
-    def set_company(nameCompany: Company):
+    def set_company(self, nameCompany: Company):
         pass

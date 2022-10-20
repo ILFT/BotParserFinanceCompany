@@ -7,5 +7,5 @@ class ICommand :
    """
 
    
-   def execute():
+   def execute(cls):
     pass 

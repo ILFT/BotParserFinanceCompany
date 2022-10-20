@@ -1,7 +1,7 @@
 from command.ICommand import ICommand
 
-class IndicatorsView(ICommand) :
+class IndicatorsViewCommand(ICommand) :
     
     
-    def execute():
+    def execute(cls):
         pass
