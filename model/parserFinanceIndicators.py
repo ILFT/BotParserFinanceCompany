@@ -1,7 +1,8 @@
-import requests
 from bs4 import BeautifulSoup 
+import re 
+import requests
 
-from model.company import Company
+from model.companyModel.company import Company
 
 
 FIRST_STOCK_MARKET = "https://www.moex.com"
@@ -33,9 +34,24 @@ class ParserFinanceIndicators :
         """
         pass
 
-    def __parsing_with_smart_lab(cls, nameCompany: str) -> Company:
+    def __parsing_with_smart_lab(cls, nameCompany: str) -> Company | None:
+        response = requests.get(f'https://smart-lab.ru/q/{nameCompany}/f')
+        if response.status_code == 200:
+            cls.__get_indicator_concrete(response)
 
-        pass
+
+        else:
+            return None
+
+
+    def __get_indicator_concrete(cls, nameIndicator: re.Pattern, response: requests.Response) -> float | None:
+        try:
+            return BeautifulSoup(response.text, 'html.parser').find('tr', field = nameIndicator).findChildren('td')[5].text
+        except:
+            return None
+
+
+
 
     def __create_company(cls, textIndicator: str) -> Company:
         """

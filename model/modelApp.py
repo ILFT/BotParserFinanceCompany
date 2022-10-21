@@ -1,5 +1,5 @@
 
-from model.company import Company
+from model.companyModel.company import Company
 
 
 class Model :
