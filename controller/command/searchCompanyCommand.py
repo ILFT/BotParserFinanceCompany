@@ -2,8 +2,8 @@ from command.ICommand import ICommand
 from model. modelApp import ModelApp
 
 
-class IndicatorsViewCommand(ICommand) :
+class SearchCompanyCommand(ICommand) :
     
     
     def execute(cls, modelConcrete: ModelApp):
-        modelConcrete.indicators_view()
+        pass

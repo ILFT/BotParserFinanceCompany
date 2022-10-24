@@ -9,26 +9,28 @@ class Company :
 
     
     name: str
-    indicators: IndicatorEnum
-    """
+    #indicators: IndicatorEnum
+    
     marketCap: float | None
     earnings: float | None
     revenue: float | None
     equity: float | None
     liabilities: float | None
     assets: float | None
-    """
+    
 
 
     def __init__(self, name: str, indicators: IndicatorEnum):
         self.name = name
-        self.indicators = indicators
+
+        self.marketCap =  indicators.marketCap.value.get_value_indicator()
+        self.earnings = indicators.earnings.value.get_value_indicator()
+        self.revenue = indicators.revenue.value.get_value_indicator()
+        self.equity = indicators.equity.value.get_value_indicator()
+        self.liabilities = indicators.liabilities.value.get_value_indicator()
+        self.assets = indicators.assets.value.get_value_indicator()
+        #self.indicators = indicators
        
-    def get_price_to_earnings(self) -> float | str:
-        if self.indicators.marketCap.get_value_indicator() == None | self.earnings == None:
-            return 'Одного из показателей для рассчета нет'
-        else:
-            return self.marketCap / self.earnings
 
     """
     def __init__(self, name: str, marketCap: float | None, earnings: float | None, revenue: float | None, equity: float | None, liabilities: float | None, assets: float | None):
@@ -39,7 +41,8 @@ class Company :
         self.equity = equity
         self.liabilities = liabilities
         self.assets = assets
-    
+    """
+
     def get_price_to_earnings(self) -> float | str:
         if self.marketCap == None | self.earnings == None:
             return 'Одного из показателей для рассчета нет'
@@ -75,7 +78,7 @@ class Company :
             return 'Одного из показателей для рассчета нет'
         else:
             return self.earnings / self.assets * 100
-    """
+    
 
     
 

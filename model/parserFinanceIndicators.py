@@ -1,8 +1,10 @@
+from urllib import request
 from bs4 import BeautifulSoup 
 import re 
 import requests
 
 from model.companyModel.company import Company
+from model.companyModel.indicatorEnum import IndicatorEnum
 
 
 FIRST_STOCK_MARKET = "https://www.moex.com"
@@ -16,11 +18,14 @@ class ParserFinanceIndicators :
     """
 
 
-    def parsing(cls, nameCompany: str):
+    def parsing(cls, nameCompany: str) -> Company:
         """
         the main function for parsing the company
         """
-        pass
+        result = cls.__parsing_with_smart_lab(nameCompany)
+        if result  == None :
+            return "компания не найдена"
+        return result
 
     def __parsing_with_moex(cls, nameCompany: str) -> Company:
         """
@@ -37,12 +42,14 @@ class ParserFinanceIndicators :
     def __parsing_with_smart_lab(cls, nameCompany: str) -> Company | None:
         response = requests.get(f'https://smart-lab.ru/q/{nameCompany}/f')
         if response.status_code == 200:
-            cls.__get_indicator_concrete(response)
-
-
+            return Company(nameCompany, cls.__get_indicator_enum(response))
         else:
             return None
 
+    def __get_indicator_enum(cls, response: requests.Response) -> IndicatorEnum:
+        for indicators  in IndicatorEnum:
+                indicators.value.set_value_indicator(cls.__get_indicator_concrete(indicators.value.get_name_for_parsing(), response))
+        return IndicatorEnum
 
     def __get_indicator_concrete(cls, nameIndicator: re.Pattern, response: requests.Response) -> float | None:
         try:

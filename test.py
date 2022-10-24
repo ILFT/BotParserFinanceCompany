@@ -1,7 +1,5 @@
 
-from enum import Enum
 from bs4 import BeautifulSoup 
-from model.companyModel.indicator import IndicatorCompany
 import re 
 import requests
 
@@ -38,14 +36,12 @@ if __name__ == "__main__":
         print('ssss')
     
 
-    class IndicatorEnum(Enum):
-        marketCap  = IndicatorCompany(re.compile('\S*market_cap'), None)
-
-    kkk = IndicatorEnum()
-    print(kkk)
-    print(IndicatorEnum.marketCap.value.get_name_for_parsing())
-    print(IndicatorEnum.marketCap.value.get_value_indicator())
-    indOneEnum = IndicatorCompany(re.compile('\S*assets'), None)
-    print(indOneEnum.get_name_for_parsing())
-    print(indOneEnum.get_value_indicator())
+    #kkk = IndicatorEnum
+    #print(kkk)
+    #kkk.marketCap.value.set_value_indicator(123)
+    #print(kkk.marketCap.value.get_name_for_parsing())
+    #print(kkk.marketCap.value.get_value_indicator())
+    #indOneEnum = IndicatorCompany(re.compile('\S*assets'), None)
+    #print(indOneEnum.get_name_for_parsing())
+    #print(indOneEnum.get_value_indicator())
 

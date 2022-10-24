@@ -9,9 +9,3 @@ class IndicatorEnum(Enum):
     equity = IndicatorCompany(re.compile('\S*cash'), None)
     liabilities = IndicatorCompany(re.compile('\S*debt'), None)
     assets = IndicatorCompany(re.compile('\S*assets'), None)
-
-
-    """
-    надо переделать и не создавать отдельтный класс инидикатор комани а необходимо создать универсальный метод который будет конкретному обьекту
-    класса комани присваивать значение через данные методы и надо узнать есть ли возмодность созать тут методы
-    """
