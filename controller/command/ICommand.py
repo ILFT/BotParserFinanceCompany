@@ -7,5 +7,5 @@ class ICommand :
    """
 
    
-   def execute(cls, modelConcrete: ModelApp):
+   def execute(self, modelConcrete: ModelApp, *arg):
     pass 

@@ -1,7 +1,5 @@
-
+from command.commandEnum import CommandEnum
 from model import modelApp
-
-from controller.command.ICommand import ICommand
 
 
 class Controller :
@@ -11,8 +9,7 @@ class Controller :
 
     model: modelApp
 
-
-    #TODO create normal controller  pattern command not perfect need pattern mb states
     
-    def execute_command(self, command: ICommand):
-        command.execute()
+    def execute_command(self, message: str, *arg):
+        CommandEnum[message].value.execute(self.model, arg)
+    #.execute()

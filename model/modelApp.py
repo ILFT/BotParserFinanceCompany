@@ -30,4 +30,5 @@ class ModelApp :
             self.observer.show_company_indicator('one or more indicators are missing')
         else:
             self.observer.show_company_indicator(indicator)
-        
+
+    #def __create_name_company(text: str) -> str:

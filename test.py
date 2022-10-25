@@ -1,4 +1,5 @@
 
+from enum import Enum
 from bs4 import BeautifulSoup 
 import re 
 import requests
@@ -9,6 +10,11 @@ def check_indicator(*arg) ->bool:
             if indicator == None:
                 return False
         return True
+
+class gg(Enum): 
+    fff = 1
+    ddd = 2
+
 
 
 if __name__ == "__main__":
@@ -41,8 +47,9 @@ if __name__ == "__main__":
     t = None
     if k == None or t == None:
         print('ssss')
-    
 
+    name = 'fff'
+    print(gg[name].value)
     
     #kkk = IndicatorEnum
     #print(kkk)
