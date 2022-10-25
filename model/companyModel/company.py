@@ -1,3 +1,4 @@
+from pickle import FALSE
 from indicatorEnum import IndicatorEnum
 
 
@@ -9,6 +10,7 @@ class Company :
 
     
     name: str
+    info: str
     #indicators: IndicatorEnum
     
     marketCap: float | None
@@ -20,15 +22,10 @@ class Company :
     
 
 
-    def __init__(self, name: str, indicators: IndicatorEnum):
+    def __init__(self, name: str, info: str, indicators: IndicatorEnum):
         self.name = name
-
-        self.marketCap =  indicators.marketCap.value.get_value_indicator()
-        self.earnings = indicators.earnings.value.get_value_indicator()
-        self.revenue = indicators.revenue.value.get_value_indicator()
-        self.equity = indicators.equity.value.get_value_indicator()
-        self.liabilities = indicators.liabilities.value.get_value_indicator()
-        self.assets = indicators.assets.value.get_value_indicator()
+        self.info = info
+        self.__set_indicator(indicators)
         #self.indicators = indicators
        
 
@@ -43,41 +40,64 @@ class Company :
         self.assets = assets
     """
 
-    def get_price_to_earnings(self) -> float | str:
-        if self.marketCap == None | self.earnings == None:
-            return 'Одного из показателей для рассчета нет'
-        else:
+    def update_indicator(self, indicators: IndicatorEnum):
+        self.__set_indicator(indicators)
+
+
+    def __set_indicator(self, indicators: IndicatorEnum):
+
+        self.marketCap =  indicators.marketCap.value.get_value_indicator()
+        self.earnings = indicators.earnings.value.get_value_indicator()
+        self.revenue = indicators.revenue.value.get_value_indicator()
+        self.equity = indicators.equity.value.get_value_indicator()
+        self.liabilities = indicators.liabilities.value.get_value_indicator()
+        self.assets = indicators.assets.value.get_value_indicator()
+
+
+    def get_info_company(self) -> str:
+        return self.info
+
+    def get_price_to_earnings(self) -> float | None:
+        if self.__check_indicator(self.marketCap, self.earnings):
             return self.marketCap / self.earnings
-
-    def get_price_to_sales_ratio(self) -> float | str:
-        if self.marketCap == None | self.revenue == None:
-            return 'Одного из показателей для рассчета нет'
         else:
+            return None
+
+    def get_price_to_sales_ratio(self) -> float | None:
+        if self.__check_indicator(self.marketCap, self.revenue):
             return self.marketCap / self.revenue
-    
-    def get_price_to_book_value(self) -> float | str:
-        if self.marketCap == None | self.equity == None:
-            return 'Одного из показателей для рассчета нет'
         else:
+            return None
+    
+    def get_price_to_book_value(self) -> float | None:
+        if self.__check_indicator(self.marketCap, self.equity):
             return self.marketCap / self.equity
+        else:
+            return None
     
-    def get_debt_to_equity_ratio(self) -> float | str:
-        if self.liabilities == None | self.equity == None:
-            return 'Одного из показателей для рассчета нет'
-        else:
+    def get_debt_to_equity_ratio(self) -> float | None:
+        if self.__check_indicator(self.liabilities, self.equity):
             return self.liabilities / self.equity
-
-    def get_return_on_shareholders_equity(self) -> float | str:
-        if self.earnings == None | self.equity == None:
-            return 'Одного из показателей для рассчета нет'
         else:
+            return None
+
+    def get_return_on_shareholders_equity(self) -> float | None:
+        if self.__check_indicator(self.earnings, self.equity):
             return self.earnings / self.equity
-
-    def get_return_on_assets(self) -> float | str:
-        if self.earnings == None | self.assets == None:
-            return 'Одного из показателей для рассчета нет'
         else:
+            return None
+
+    def get_return_on_assets(self) -> float | None:
+        if self.__check_indicator(self.earnings, self.assets):
             return self.earnings / self.assets * 100
+        else:
+            return None
+
+    def __check_indicator(*arg) ->bool:
+        for indicator in arg:
+            if indicator == None:
+                return False
+        return True
     
 
     

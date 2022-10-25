@@ -18,14 +18,13 @@ class ParserFinanceIndicators :
     """
 
 
-    def parsing(cls, nameCompany: str) -> Company:
+    def parsing(cls, nameCompany: str) -> Company | None:
         """
         the main function for parsing the company
         """
-        result = cls.__parsing_with_smart_lab(nameCompany)
-        if result  == None :
-            return "компания не найдена"
-        return result
+
+        
+        return cls.__parsing_with_smart_lab(nameCompany)
 
     def __parsing_with_moex(cls, nameCompany: str) -> Company:
         """

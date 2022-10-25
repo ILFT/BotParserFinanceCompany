@@ -4,6 +4,13 @@ import re
 import requests
 
 
+def check_indicator(*arg) ->bool:
+        for indicator in arg:
+            if indicator == None:
+                return False
+        return True
+
+
 if __name__ == "__main__":
 
     nameCompany = 'tcsg'
@@ -36,6 +43,7 @@ if __name__ == "__main__":
         print('ssss')
     
 
+    
     #kkk = IndicatorEnum
     #print(kkk)
     #kkk.marketCap.value.set_value_indicator(123)
