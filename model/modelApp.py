@@ -1,7 +1,7 @@
 
 from companyModel.company import Company
 from parserFinanceIndicators import ParserFinanceIndicators
-from view.observerModel import ObserverModelApp
+#from view.observerModel import ObserverModelApp
 
 
 class ModelApp :
@@ -9,21 +9,31 @@ class ModelApp :
     pattern mvc model 
     """
 
-
-    #nowCompany: Company | None
+    """
+    nowCompany: Company | None
     observer: ObserverModelApp
 
-    def __init__(self, observer: ObserverModelApp):
-        #self.nowCompany = None
+    def __init__(self,observer: ObserverModelApp):
+        self.nowCompany = None
         self.observer = observer
+    """
 
+
+    def search_company(self, nameCompany: str) -> str:
+        self.nowCompany = ParserFinanceIndicators.parsing(nameCompany)
+        if self.nowCompany  == None:
+            return 'company not found'
+        else:
+            return self.nowCompany.get_all_indicators()
+
+    """      
     def search_company(self, nameCompany: str):
         self.nowCompany = ParserFinanceIndicators.parsing(nameCompany)
         if self.nowCompany  == None:
             self.observer.show_company_serched('company not found')
         else:
             self.observer.show_company_serched(self.nowCompany.get_info_company())
-
+    """
 
     """
     def indicators_view(self):

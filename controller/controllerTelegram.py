@@ -6,7 +6,7 @@ from aiogram.dispatcher.filters.builtin import Command
 
 
 from controllerApp import ControllerApp
-from view.observerModel import ObserverModel
+from view.viewObserverTelegram import ViewObserverTelegram
 
 
 class ControllerTelegram:
@@ -14,12 +14,22 @@ class ControllerTelegram:
     bot: Bot
     dispatcher: Dispatcher
     controller: ControllerApp
-    
+    observer: ViewObserverTelegram
 
+
+    """
     def __init__(self, tokenApi: str, observerModel: ObserverModel):
-        self.bot = Bot(token=tokenApi)
+        self.bot = Bot(token = tokenApi)
         self.dispatcher = Dispatcher(self.bot)
         self.controller = ControllerApp(observerModel)
+        self.__set_handler_dispatcher()
+    """
+    
+    def __init__(self, tokenApi: str):
+        self.bot = Bot(token = tokenApi)
+        self.dispatcher = Dispatcher(self.bot)
+        self.controller = ControllerApp()
+        self.observer = ViewObserverTelegram()
         self.__set_handler_dispatcher()
 
     def start_bot(self):
@@ -34,5 +44,5 @@ class ControllerTelegram:
 
 
     async def search_comppny_finance(self, message: types.Message, command: Command.CommandObj):
-        await self.controller.execute_command(command.command, command.args)
+        await self.observer.show_company_serched(self.bot, message, self.controller.execute_command(command.command, command.args))
         
