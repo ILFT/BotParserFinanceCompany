@@ -18,7 +18,6 @@ class gg(Enum):
 
 
 if __name__ == "__main__":
-
     nameCompany = 'tcsg'
     response  = requests.get(f'https://smart-lab.ru/q/{nameCompany}/f')
     print(response.status_code)

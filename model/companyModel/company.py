@@ -1,6 +1,4 @@
-from pickle import FALSE
 from indicatorEnum import IndicatorEnum
-
 
 
 class Company : 
@@ -46,7 +44,7 @@ class Company :
 
     def __set_indicator(self, indicators: IndicatorEnum):
 
-        self.marketCap =  indicators.marketCap.value.get_value_indicator()
+        self.marketCap = indicators.marketCap.value.get_value_indicator()
         self.earnings = indicators.earnings.value.get_value_indicator()
         self.revenue = indicators.revenue.value.get_value_indicator()
         self.equity = indicators.equity.value.get_value_indicator()
