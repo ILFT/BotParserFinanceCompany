@@ -1,4 +1,4 @@
-from urllib import request
+
 from bs4 import BeautifulSoup 
 import re 
 import requests
@@ -7,10 +7,9 @@ from companyModel.company import Company
 from companyModel.indicatorEnum import IndicatorEnum
 
 
-FIRST_STOCK_MARKET = "https://www.moex.com"
-SECOND_STOCK_MARKET = "https://tradingview.com"
-THRID_STOCK_MARKET = "https://smart-lab.ru"
-#/q/GAZP/f/y
+##FIRST_STOCK_MARKET = "https://www.moex.com"
+#SECOND_STOCK_MARKET = "https://tradingview.com"
+#THRID_STOCK_MARKET = "https://smart-lab.ru"
 
 class ParserFinanceIndicators :
     """
@@ -22,24 +21,8 @@ class ParserFinanceIndicators :
         """
         the main function for parsing the company
         """
-
-        
         return cls.__parsing_with_smart_lab(nameCompany)
 
-    @classmethod
-    def __parsing_with_moex(cls, nameCompany: str) -> Company:
-        """
-        the function parsing from the site https://www.moex.com
-        """
-        pass
-
-    @classmethod
-    def __parsing_with_trading_view(cls, nameCompany: str) -> Company:
-        """
-        the function parsing from the site https://tradingview.com
-        """
-        pass
-    
     @classmethod
     def __parsing_with_smart_lab(cls, nameCompany: str) -> Company | None:
         response = requests.get(f'https://smart-lab.ru/q/{nameCompany}/f')
@@ -62,12 +45,15 @@ class ParserFinanceIndicators :
             return None
 
 
-
-    @classmethod
-    def __create_company(cls, textIndicator: str) -> Company:
-        """
-        the function of create new object class company
-        """
+    """
+    def __parsing_with_moex(cls, nameCompany: str) -> Company:
         pass
 
+    def __parsing_with_trading_view(cls, nameCompany: str) -> Company:
+        
+        pass
+
+    def __create_company(cls, textIndicator: str) -> Company:
+        pass
+    """
 

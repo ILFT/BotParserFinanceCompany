@@ -1,8 +1,4 @@
 
-from aiogram import Bot, types
-from aiogram.dispatcher import Dispatcher
-from aiogram.utils import executor
-from aiogram.dispatcher.filters import Command
 
 import sys
 sys.path.append('D:\BotParserFinanceCompany\BotParserFinanceCompany')
@@ -16,15 +12,8 @@ from model.companyModel.company import Company
 #import os
 #import token
 
-TOKEN_API_TELEGRAM = ''
 
-class TelegramView():
 
-    def show():
-        pass
-
-bot = Bot(token=TOKEN_API_TELEGRAM)
-dp = Dispatcher(bot)
 
 @dp.message_handler(commands=['search'])
 async def search_company(message: types.Message, command: Command):
@@ -39,5 +28,3 @@ async def echo_send(message: types.Message):
     await message.answer(message.text)
 
 
-
-executor.start_polling(dp, skip_updates=True)

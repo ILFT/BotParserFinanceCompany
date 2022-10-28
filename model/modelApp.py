@@ -10,11 +10,11 @@ class ModelApp :
     """
 
 
-    nowCompany: Company | None
+    #nowCompany: Company | None
     observer: ObserverModelApp
 
     def __init__(self, observer: ObserverModelApp):
-        self.nowCompany = None
+        #self.nowCompany = None
         self.observer = observer
 
     def search_company(self, nameCompany: str):
@@ -24,6 +24,8 @@ class ModelApp :
         else:
             self.observer.show_company_serched(self.nowCompany.get_info_company())
 
+
+    """
     def indicators_view(self):
         indicator = self.nowCompany.get_price_to_earnings()
         if indicator == None:
@@ -31,4 +33,5 @@ class ModelApp :
         else:
             self.observer.show_company_indicator(indicator)
 
+    """
     #def __create_name_company(text: str) -> str:

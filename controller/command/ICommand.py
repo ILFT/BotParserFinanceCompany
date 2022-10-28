@@ -8,4 +8,4 @@ class ICommand :
 
    
    def execute(self, modelConcrete: ModelApp, *arg):
-    pass 
+      raise NotImplementedError()
