@@ -2,7 +2,7 @@ from command.commandEnum import CommandEnum
 from model import modelApp
 
 
-class Controller :
+class ControllerApp :
     """
     pattern mvc Controller 
     """
@@ -10,6 +10,6 @@ class Controller :
     model: modelApp
 
     
-    def execute_command(self, message: str, *arg):
-        CommandEnum[message].value.execute(self.model, arg)
+    def execute_command(self, nameCommand: str, *arg) -> str:
+        return CommandEnum[nameCommand].value.execute(self.model, arg)
     #.execute()

@@ -10,9 +10,18 @@ class ModelApp :
     """
 
 
-    nowCompany: Company | None
-    observer: ObserverModelApp
+    #nowCompany: Company | None
+    #observer: ObserverModelApp
 
+
+    def search_company(self, nameCompany: str) -> str:
+        company = ParserFinanceIndicators.parsing(nameCompany)
+        if company  == None:
+            return 'company not found'
+        else:
+            return company.get_all_indicators()
+
+    """
     def __init__(self, observer: ObserverModelApp):
         self.nowCompany = None
         self.observer = observer
@@ -30,5 +39,5 @@ class ModelApp :
             self.observer.show_company_indicator('one or more indicators are missing')
         else:
             self.observer.show_company_indicator(indicator)
-
+    """
     #def __create_name_company(text: str) -> str:

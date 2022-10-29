@@ -93,11 +93,16 @@ class Company :
         else:
             return None
 
-    def __check_indicator(*arg) ->bool:
+    def __check_indicator(*arg) -> bool:
         for indicator in arg:
             if indicator == None:
                 return False
         return True
+    
+
+    def get_all_indicators(self) -> str:
+        return f'P/E = {self.get_price_to_earnings():.2f} \nP/S = {self.get_price_to_sales_ratio():.2f}\nP/B = {self.get_price_to_book_value():.2f}\nD/E = {self.get_debt_to_equity_ratio():.2f}\nROE = {self.get_return_on_shareholders_equity():.2f}\nROA = {self.get_return_on_assets():.2f}'
+
     
 
     
