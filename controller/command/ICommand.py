@@ -1,4 +1,4 @@
-from model. modelApp import ModelApp
+from model.modelApp import ModelApp
 
 
 class ICommand :
