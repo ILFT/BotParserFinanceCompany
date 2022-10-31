@@ -6,4 +6,4 @@ class SearchCompanyCommand(ICommand) :
     
     
     def execute(self, modelConcrete: ModelApp, *arg) -> str:
-        return modelConcrete.search_company(arg)
+        return modelConcrete.search_company(*arg)
