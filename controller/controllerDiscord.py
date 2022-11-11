@@ -17,29 +17,29 @@ class ControllerDiscord():
     observer: ViewDiscord
 
     def __init__(self, prefix: str):
+        #super().__init__(command_prefix = prefix, intents = Intents.all())
         self.controller = ControllerApp()
         self.bot = Bot(command_prefix = prefix, intents = Intents.all())
         self.observer = ViewDiscord()
         self.__set_handler_bot()
-
 
     """
     @bot.event
     async def on_ready():
         print('BOT connected')
     """
-    
-
-    @commands.command()
-    #@self.bot.command()
-    async def search(ctx: Context, arg):
-        #print(ctx.author)
-        #print(ctx.message.content)
-        print(arg)
-        await ctx.send(arg)
-        #await self.observer.send_search_company(ctx, self.controller.execute_command(ctx.command, arg))
 
     
+    def search(self):
+        @self.bot.command(name = 'search')
+        async def search(ctx: Context, name: str):
+            print(ctx.author)
+            print(ctx.message.content)
+            print(name)
+            await ctx.send('fff')
+            #await self.observer.send_search_company(ctx, self.controller.execute_command(ctx.command, name))
+
+
     def start_bot(self, token: str):
         self.bot.run(token)
 
@@ -47,5 +47,5 @@ class ControllerDiscord():
         self.bot.close()
     
     def __set_handler_bot(self):
-        self.bot.add_command(self.search)
+        self.search()
     
