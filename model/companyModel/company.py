@@ -24,7 +24,7 @@ class Company :
 
     def __init__(self, name: str, info: str, indicators: IndicatorEnum):
         self.name = name
-        self.info = info
+        self.info = name
         self.__set_indicator(indicators)
         #self.indicators = indicators
        

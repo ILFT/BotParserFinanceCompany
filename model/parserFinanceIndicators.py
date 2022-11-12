@@ -29,7 +29,7 @@ class ParserFinanceIndicators :
     def __parsing_with_smart_lab(cls, nameCompany: str) -> Company | None:
         response = requests.get(f'https://smart-lab.ru/q/{nameCompany}/f')
         if response.status_code == 200:
-            return Company(nameCompany, cls.__get_indicator_enum(response))
+            return Company(nameCompany, nameCompany, cls.__get_indicator_enum(response))
         else:
             return None
     
@@ -42,7 +42,7 @@ class ParserFinanceIndicators :
     @classmethod
     def __get_indicator_concrete(cls, nameIndicator: re.Pattern, response: requests.Response) -> float | None:
         try:
-            return BeautifulSoup(response.text, 'html.parser').find('tr', field = nameIndicator).findChildren('td')[5].text
+            return float(BeautifulSoup(response.text, 'html.parser').find('tr', field = nameIndicator).findChildren('td')[5].text.replace(' ', ''))
         except:
             return None
 

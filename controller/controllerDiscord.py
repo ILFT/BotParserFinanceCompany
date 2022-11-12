@@ -33,11 +33,7 @@ class ControllerDiscord():
     def search(self):
         @self.bot.command(name = 'search')
         async def search(ctx: Context, name: str):
-            print(ctx.author)
-            print(ctx.message.content)
-            print(name)
-            await ctx.send('fff')
-            #await self.observer.send_search_company(ctx, self.controller.execute_command(ctx.command, name))
+            await self.observer.send_search_company(ctx, self.controller.execute_command(ctx.command.name, name))
 
 
     def start_bot(self, token: str):
